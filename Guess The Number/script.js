@@ -7,6 +7,7 @@
 // document.querySelector('.guess').value = 10;
 // console.log(document.querySelector('.guess').value);
 let score = 20;
+let maxScore = 0;
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 
 document.querySelector(".check").addEventListener("click", function () {
@@ -14,10 +15,11 @@ document.querySelector(".check").addEventListener("click", function () {
   if (!guess) {
     document.querySelector(".message").textContent = "⛔️ No Number!";
   } else if (guess === secretNumber) {
+    maxScore = Math.max(maxScore, score);
     document.querySelector(".message").textContent = "🎉 Correct Number";
     document.querySelector(".number").textContent = secretNumber;
     document.querySelector("body").style.backgroundColor = "#60b347";
-
+    document.querySelector('.highscore').textContent = maxScore;
     document.querySelector(".number").style.width = "30rem";
   } else if (guess > secretNumber) {
     if (score > 1) {
